@@ -1,0 +1,253 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- common.css -->
+      <style>* {-webkit-tap-highlight-color: rgba(0,0,0,0);}html {-webkit-text-size-adjust: none;}body {font-family: -apple-system, Helvetica, Arial, sans-serif;margin: 0;padding: 20px;color: #333;word-wrap: break-word;}h1, h2, h3, h4, h5, h6 {line-height: 1.1;}img {max-width: 100% !important;height: auto;}blockquote {margin: 0;padding: 0 15px;color: #777;border-left: 4px solid #ddd;}hr {background-color: #ddd;border: 0;height: 1px;margin: 15px 0;}code {font-family: Menlo, Consolas, 'Ubuntu Mono', Monaco, 'source-code-pro', monospace;line-height: 1.4;margin: 0;padding: 0.2em 0;font-size: 90%;background-color: rgba(0,0,0,0.04);border-radius: 3px;}pre > code {margin: 0;padding: 0;font-size: 100%;word-break: normal;background: transparent;border: 0;}ol {list-style-type: decimal;}ol ol, ul ol {list-style-type: lower-latin;}ol ol ol, ul ol ol, ul ul ol, ol ul ol {list-style-type: lower-roman;}table {border-spacing: 0;border-collapse: collapse;margin-top: 0;margin-bottom: 16px;}table th {font-weight: bold;}table th, table td {padding: 6px 13px;border: 1px solid #ddd;}table tr {border-top: 1px solid #ccc;}table tr:nth-child(even) {background-color: #f8f8f8;}input[type="checkbox"] {cursor: default;margin-right: 0.5em;font-size: 13px;}.task-list-item {list-style-type: none;}.task-list-item+.task-list-item {margin-top: 3px;}.task-list-item input {float: left;margin: 0.3em 1em 0.25em -1.6em;vertical-align: middle;}#tag-field {margin: 8px 2px 10px;}#tag-field .tag {display: inline-block;background: #cadff3;border-radius: 4px;padding: 1px 8px;color: black;font-size: 12px;margin-right: 10px;line-height: 1.4;}</style>
+      <!-- ace-static.css -->
+      <style>.ace_static_highlight {white-space: pre-wrap;}.ace_static_highlight .ace_gutter {width: 2em;text-align: right;padding: 0 3px 0 0;margin-right: 3px;}.ace_static_highlight.ace_show_gutter > .ace_line {padding-left: 2.6em;}.ace_static_highlight .ace_line {position: relative;}.ace_static_highlight .ace_gutter-cell {-moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;top: 0;bottom: 0;left: 0;position: absolute;}.ace_static_highlight .ace_gutter-cell:before {content: counter(ace_line, decimal);counter-increment: ace_line;}.ace_static_highlight {counter-reset: ace_line;}</style>
+      <style>.ace-chrome .ace_gutter {background: #ebebeb;color: #333;overflow : hidden;}.ace-chrome .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-chrome {background-color: #FFFFFF;color: black;}.ace-chrome .ace_cursor {color: black;}.ace-chrome .ace_invisible {color: rgb(191, 191, 191);}.ace-chrome .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-chrome .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-chrome .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-chrome .ace_invalid {background-color: rgb(153, 0, 0);color: white;}.ace-chrome .ace_fold {}.ace-chrome .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-chrome .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-chrome .ace_support.ace_type,.ace-chrome .ace_support.ace_class.ace-chrome .ace_support.ace_other {color: rgb(109, 121, 222);}.ace-chrome .ace_variable.ace_parameter {font-style:italic;color:#FD971F;}.ace-chrome .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-chrome .ace_comment {color: #236e24;}.ace-chrome .ace_comment.ace_doc {color: #236e24;}.ace-chrome .ace_comment.ace_doc.ace_tag {color: #236e24;}.ace-chrome .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-chrome .ace_variable {color: rgb(49, 132, 149);}.ace-chrome .ace_xml-pe {color: rgb(104, 104, 91);}.ace-chrome .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-chrome .ace_heading {color: rgb(12, 7, 255);}.ace-chrome .ace_list {color:rgb(185, 6, 144);}.ace-chrome .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-chrome .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-chrome .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-chrome .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-chrome .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-chrome .ace_gutter-active-line {background-color : #dcdcdc;}.ace-chrome .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-chrome .ace_storage,.ace-chrome .ace_keyword,.ace-chrome .ace_meta.ace_tag {color: rgb(147, 15, 128);}.ace-chrome .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-chrome .ace_string {color: #1A1AA6;}.ace-chrome .ace_entity.ace_other.ace_attribute-name {color: #994409;}.ace-chrome .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}</style>
+      <!-- export.css -->
+      <style>
+        body{margin:0 auto;max-width:800px;line-height:1.4}
+        #nav{margin:5px 0 10px;font-size:15px}
+        #titlearea{border-bottom:1px solid #ccc;font-size:17px;padding:10px 0;}
+        #contentarea{font-size:15px;margin:16px 0}
+        .cell{outline:0;min-height:20px;margin:5px 0;padding:5px 0;}
+        .code-cell{font-family:Menlo,Consolas,'Ubuntu Mono',Monaco,'source-code-pro',monospace;font-size:12px;}
+        .latex-cell{white-space:pre-wrap;}
+      </style>
+      <!-- User CSS -->
+      <style> .text-cell {font-size: 15px;}.code-cell {font-size: 12px;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
+    </head>
+    <body>
+      <div id="nav"><div>Next: <a href='3.3 Lottie 🥳.html'>3.3 Lottie 🥳</a>, Previous: <a href='3.1 React native animations - Animated API & LayoutAnimation 🤩.html'>3.1 React native animations - Animated API & LayoutAnimation 🤩</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="titlearea">
+        <h2>3.2 react-native-animatable 🤩</h2>
+      </div>
+      <div id="contentarea"><div class="cell text-cell"><img src="resources/3F20A2D96D3C8C30EB3EB15A07906214.gif" alt="animatable1.gif" width="205" height="108"></div><div class="cell text-cell">An improved library based on React Native’s animated API</div><div class="cell code-cell"><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">Animatable</span>.<span class="ace_entity ace_other ace_attribute-name ace_xml">Text</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">animation</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"slideInDown"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">iterationCount</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_constant ace_numeric">5</span><span class="ace_paren ace_quasi ace_end">}</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">direction</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"alternate"</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span><span class="ace_string">Up and down you go</span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">Animatable</span>.<span class="ace_entity ace_other ace_attribute-name ace_xml">Text</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">Animatable</span>.<span class="ace_entity ace_other ace_attribute-name ace_xml">Text</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">animation</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"pulse"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">easing</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"ease-out"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">iterationCount</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"infinite"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">textAlign</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'center'</span> <span class="ace_paren ace_rparen">}</span><span class="ace_paren ace_quasi ace_end">}</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span><span class="ace_string">❤️</span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">Animatable</span>.<span class="ace_entity ace_other ace_attribute-name ace_xml">Text</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div></div></div></div><div class="cell markdown-cell"><h4>Properties</h4>
+<p><em>Note: Other properties will be passed down to underlying component.</em></p>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>animation</code></strong></td>
+<td>Name of the animation, see below for available animations.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>duration</code></strong></td>
+<td>For how long the animation will run (milliseconds).</td>
+<td><code>1000</code></td>
+</tr>
+<tr>
+<td><strong><code>delay</code></strong></td>
+<td>Optionally delay animation (milliseconds).</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><strong><code>direction</code></strong></td>
+<td>Direction of animation, especially useful for repeating animations. Valid values: <code>normal</code>, <code>reverse</code>, <code>alternate</code>, <code>alternate-reverse</code>.</td>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<td><strong><code>easing</code></strong></td>
+<td>Timing function for the animation. Valid values: custom function or <code>linear</code>, <code>ease</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>ease-in-cubic</code>, <code>ease-out-cubic</code>, <code>ease-in-out-cubic</code>, <code>ease-in-circ</code>, <code>ease-out-circ</code>, <code>ease-in-out-circ</code>, <code>ease-in-expo</code>, <code>ease-out-expo</code>, <code>ease-in-out-expo</code>, <code>ease-in-quad</code>, <code>ease-out-quad</code>, <code>ease-in-out-quad</code>, <code>ease-in-quart</code>, <code>ease-out-quart</code>, <code>ease-in-out-quart</code>, <code>ease-in-quint</code>, <code>ease-out-quint</code>, <code>ease-in-out-quint</code>, <code>ease-in-sine</code>, <code>ease-out-sine</code>, <code>ease-in-out-sine</code>, <code>ease-in-back</code>, <code>ease-out-back</code>, <code>ease-in-out-back</code>.</td>
+<td><code>ease</code></td>
+</tr>
+<tr>
+<td><strong><code>iterationCount</code></strong></td>
+<td>How many times to run the animation, use <code>infinite</code> for looped animations.</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><strong><code>iterationDelay</code></strong></td>
+<td>For how long to pause between animation iterations (milliseconds).</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><strong><code>transition</code></strong></td>
+<td>What <code>style</code> property to transition, for example <code>opacity</code>, <code>rotate</code> or <code>fontSize</code>. Use array for multiple properties.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>onAnimationBegin</code></strong></td>
+<td>A function that is called when the animation has been started.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>onAnimationEnd</code></strong></td>
+<td>A function that is called when the animation has been completed successfully or cancelled. Function is called with an <code>endState</code> argument, refer to <code>endState.finished</code> to see if the animation completed or not.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>onTransitionBegin</code></strong></td>
+<td>A function that is called when the transition of a style has been started. The function is called with a <code>property</code> argument to differentiate between styles.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>onTransitionEnd</code></strong></td>
+<td>A function that is called when the transition of a style has been completed successfully or cancelled. The function is called with a <code>property</code> argument to differentiate between styles.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>useNativeDriver</code></strong></td>
+<td>Whether to use native or JavaScript animation driver. Native driver can help with performance but cannot handle all types of styling.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><strong><code>isInteraction</code></strong></td>
+<td>Whether or not this animation creates an "interaction handle" on the InteractionManager.</td>
+<td><code>false</code> if <code>iterationCount</code> is less than or equal to one</td>
+</tr>
+</tbody>
+</table>
+</div><div class="cell text-cell">With react-native-animatable, there’s a long list of animations that has already been premade&nbsp;<div>You can just use it by call the name of animation and pass it to the “animation” prop</div><div>List of the animations can find here:</div></div><div class="cell markdown-cell"><h2>Animations</h2>
+<p>Animations are heavily inspired by <a href="https://daneden.github.io/animate.css/">Animated.css</a>.</p>
+<h3>Attention Seekers</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590307/ef73b1ba-767d-11e5-8fb9-9779d3a53a50.gif" alt="animatable-attention"></p>
+<ul>
+<li><code>bounce</code></li>
+<li><code>flash</code></li>
+<li><code>jello</code></li>
+<li><code>pulse</code></li>
+<li><code>rotate</code></li>
+<li><code>rubberBand</code></li>
+<li><code>shake</code></li>
+<li><code>swing</code></li>
+<li><code>tada</code></li>
+<li><code>wobble</code></li>
+</ul>
+<h3>Bouncing Entrances</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590306/ef572bbc-767d-11e5-8440-8e61d401537a.gif" alt="animatable-bouncein"></p>
+<ul>
+<li><code>bounceIn</code></li>
+<li><code>bounceInDown</code></li>
+<li><code>bounceInUp</code></li>
+<li><code>bounceInLeft</code></li>
+<li><code>bounceInRight</code></li>
+</ul>
+<h3>Bouncing Exits</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590305/ef56e4cc-767d-11e5-9562-6cd3210faf34.gif" alt="animatable-bounceout"></p>
+<ul>
+<li><code>bounceOut</code></li>
+<li><code>bounceOutDown</code></li>
+<li><code>bounceOutUp</code></li>
+<li><code>bounceOutLeft</code></li>
+<li><code>bounceOutRight</code></li>
+</ul>
+<h3>Fading Entrances</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590304/ef4f09b4-767d-11e5-9a43-06e97e8ee2c1.gif" alt="animatable-fadein"></p>
+<ul>
+<li><code>fadeIn</code></li>
+<li><code>fadeInDown</code></li>
+<li><code>fadeInDownBig</code></li>
+<li><code>fadeInUp</code></li>
+<li><code>fadeInUpBig</code></li>
+<li><code>fadeInLeft</code></li>
+<li><code>fadeInLeftBig</code></li>
+<li><code>fadeInRight</code></li>
+<li><code>fadeInRightBig</code></li>
+</ul>
+<h3>Fading Exits</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590303/ef3e9598-767d-11e5-83bc-bd48d6017131.gif" alt="animatable-fadeout"></p>
+<ul>
+<li><code>fadeOut</code></li>
+<li><code>fadeOutDown</code></li>
+<li><code>fadeOutDownBig</code></li>
+<li><code>fadeOutUp</code></li>
+<li><code>fadeOutUpBig</code></li>
+<li><code>fadeOutLeft</code></li>
+<li><code>fadeOutLeftBig</code></li>
+<li><code>fadeOutRight</code></li>
+<li><code>fadeOutRightBig</code></li>
+</ul>
+<h3>Flippers</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590296/ef3076ca-767d-11e5-9f62-6b9c696dad51.gif" alt="animatable-flip"></p>
+<ul>
+<li><code>flipInX</code></li>
+<li><code>flipInY</code></li>
+<li><code>flipOutX</code></li>
+<li><code>flipOutY</code></li>
+</ul>
+<h3>Lightspeed</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590301/ef374c8e-767d-11e5-83ad-b249d2731f43.gif" alt="animatable-lightspeed"></p>
+<ul>
+<li><code>lightSpeedIn</code></li>
+<li><code>lightSpeedOut</code></li>
+</ul>
+<h3>Sliding Entrances</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590300/ef36dfe2-767d-11e5-932b-1cccce78087b.gif" alt="animatable-slidein"></p>
+<ul>
+<li><code>slideInDown</code></li>
+<li><code>slideInUp</code></li>
+<li><code>slideInLeft</code></li>
+<li><code>slideInRight</code></li>
+</ul>
+<h3>Sliding Exits</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590299/ef35a3ca-767d-11e5-94e0-441fd49b6444.gif" alt="animatable-slideout"></p>
+<ul>
+<li><code>slideOutDown</code></li>
+<li><code>slideOutUp</code></li>
+<li><code>slideOutLeft</code></li>
+<li><code>slideOutRight</code></li>
+</ul>
+<h3>Zooming Entrances</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590302/ef37d438-767d-11e5-8480-a212e21c2192.gif" alt="animatable-zoomin"></p>
+<ul>
+<li><code>zoomIn</code></li>
+<li><code>zoomInDown</code></li>
+<li><code>zoomInUp</code></li>
+<li><code>zoomInLeft</code></li>
+<li><code>zoomInRight</code></li>
+</ul>
+<h3>Zooming Exits</h3>
+<p><img src="https://cloud.githubusercontent.com/assets/378279/10590298/ef33fa52-767d-11e5-80fe-6b8dbb5e53d0.gif" alt="animatable-zoomout"></p>
+<ul>
+<li><code>zoomOut</code></li>
+<li><code>zoomOutDown</code></li>
+<li><code>zoomOutUp</code></li>
+<li><code>zoomOutLeft</code></li>
+<li><code>zoomOutRight</code></li>
+</ul>
+</div><div class="cell text-cell">Also, because all the animations made in react-native-animatable are heavily inspired by Animate.css<div>So in dashboard, you can easily impliment these animations using Animate.css</div></div><div class="cell markdown-cell"><p><a href="https://daneden.github.io/animate.css/">Animate.css</a></p>
+</div><div class="cell text-cell"><b>PROPS AND CONS</b></div><div class="cell markdown-cell"><table>
+<thead>
+<tr>
+<th>Props</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Have a curated selection of premade animations</td>
+<td>Still handle most of the animation on JS thread</td>
+</tr>
+<tr>
+<td>Easier to implement, for both web and mobile</td>
+<td>useNativeDriver is very limited</td>
+</tr>
+<tr>
+<td>Can easily config how animation shows; by passing props</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><div class="cell text-cell"><b>My thoughts: 👍</b><div>- We can use this library to create animations for user's elements (widgets, item,…) without having to code a lot.</div><div>- Also, these animation can be created manually -&nbsp;<a href="https://github.com/oblador/react-native-animatable#custom-animations">https://github.com/oblador/react-native-animatable#custom-animations</a></div><div>- Because of its curated selection of premade animations, react-native-animatable is in many ways, superior to React native’s integrated Animated API which could see as a more “barebone” option; requires more coding to achieve the same animation.</div><div>- There’s also an advantage: the premade animations of React-native-animatable is inspired by Animate.css, the Dashboard dev team could implement these animations at an ease!</div><div><br></div><div>However, just like React Native Animated API, some animations have to be handled on JS thread; useNativeDriver only support a few styling options -&gt; have the same problem as React Native Animated API; especially when it comes to create custom animation.</div><div>I think there’s some possible usecases of this library in our current project:</div><div>Create animation for a widget:</div><div>&nbsp; + When it appears</div><div>&nbsp; + When it disappears</div><div>User can then config the type, duration, delay before showing, interationCount (how many times to run the animation), interationDelay (the delay between each iterations)… by passing props</div></div><div class="cell text-cell"></div><div class="cell text-cell"></div><div class="cell text-cell"></div><div class="cell text-cell"></div><div class="cell text-cell"></div></div>
+      <script>document.body.onkeyup = function(e) {
+if (e.keyCode === 39) window.location.href = '3.3 Lottie 🥳.html';
+if (e.keyCode === 37) window.location.href = '3.1 React native animations - Animated API & LayoutAnimation 🤩.html';
+}</script>
+    </body>
+    </html>
+  

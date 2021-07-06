@@ -1,0 +1,196 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- common.css -->
+      <style>* {-webkit-tap-highlight-color: rgba(0,0,0,0);}html {-webkit-text-size-adjust: none;}body {font-family: -apple-system, Helvetica, Arial, sans-serif;margin: 0;padding: 20px;color: #333;word-wrap: break-word;}h1, h2, h3, h4, h5, h6 {line-height: 1.1;}img {max-width: 100% !important;height: auto;}blockquote {margin: 0;padding: 0 15px;color: #777;border-left: 4px solid #ddd;}hr {background-color: #ddd;border: 0;height: 1px;margin: 15px 0;}code {font-family: Menlo, Consolas, 'Ubuntu Mono', Monaco, 'source-code-pro', monospace;line-height: 1.4;margin: 0;padding: 0.2em 0;font-size: 90%;background-color: rgba(0,0,0,0.04);border-radius: 3px;}pre > code {margin: 0;padding: 0;font-size: 100%;word-break: normal;background: transparent;border: 0;}ol {list-style-type: decimal;}ol ol, ul ol {list-style-type: lower-latin;}ol ol ol, ul ol ol, ul ul ol, ol ul ol {list-style-type: lower-roman;}table {border-spacing: 0;border-collapse: collapse;margin-top: 0;margin-bottom: 16px;}table th {font-weight: bold;}table th, table td {padding: 6px 13px;border: 1px solid #ddd;}table tr {border-top: 1px solid #ccc;}table tr:nth-child(even) {background-color: #f8f8f8;}input[type="checkbox"] {cursor: default;margin-right: 0.5em;font-size: 13px;}.task-list-item {list-style-type: none;}.task-list-item+.task-list-item {margin-top: 3px;}.task-list-item input {float: left;margin: 0.3em 1em 0.25em -1.6em;vertical-align: middle;}#tag-field {margin: 8px 2px 10px;}#tag-field .tag {display: inline-block;background: #cadff3;border-radius: 4px;padding: 1px 8px;color: black;font-size: 12px;margin-right: 10px;line-height: 1.4;}</style>
+      <!-- ace-static.css -->
+      <style>.ace_static_highlight {white-space: pre-wrap;}.ace_static_highlight .ace_gutter {width: 2em;text-align: right;padding: 0 3px 0 0;margin-right: 3px;}.ace_static_highlight.ace_show_gutter > .ace_line {padding-left: 2.6em;}.ace_static_highlight .ace_line {position: relative;}.ace_static_highlight .ace_gutter-cell {-moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;top: 0;bottom: 0;left: 0;position: absolute;}.ace_static_highlight .ace_gutter-cell:before {content: counter(ace_line, decimal);counter-increment: ace_line;}.ace_static_highlight {counter-reset: ace_line;}</style>
+      <style>.ace-chrome .ace_gutter {background: #ebebeb;color: #333;overflow : hidden;}.ace-chrome .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-chrome {background-color: #FFFFFF;color: black;}.ace-chrome .ace_cursor {color: black;}.ace-chrome .ace_invisible {color: rgb(191, 191, 191);}.ace-chrome .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-chrome .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-chrome .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-chrome .ace_invalid {background-color: rgb(153, 0, 0);color: white;}.ace-chrome .ace_fold {}.ace-chrome .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-chrome .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-chrome .ace_support.ace_type,.ace-chrome .ace_support.ace_class.ace-chrome .ace_support.ace_other {color: rgb(109, 121, 222);}.ace-chrome .ace_variable.ace_parameter {font-style:italic;color:#FD971F;}.ace-chrome .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-chrome .ace_comment {color: #236e24;}.ace-chrome .ace_comment.ace_doc {color: #236e24;}.ace-chrome .ace_comment.ace_doc.ace_tag {color: #236e24;}.ace-chrome .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-chrome .ace_variable {color: rgb(49, 132, 149);}.ace-chrome .ace_xml-pe {color: rgb(104, 104, 91);}.ace-chrome .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-chrome .ace_heading {color: rgb(12, 7, 255);}.ace-chrome .ace_list {color:rgb(185, 6, 144);}.ace-chrome .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-chrome .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-chrome .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-chrome .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-chrome .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-chrome .ace_gutter-active-line {background-color : #dcdcdc;}.ace-chrome .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-chrome .ace_storage,.ace-chrome .ace_keyword,.ace-chrome .ace_meta.ace_tag {color: rgb(147, 15, 128);}.ace-chrome .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-chrome .ace_string {color: #1A1AA6;}.ace-chrome .ace_entity.ace_other.ace_attribute-name {color: #994409;}.ace-chrome .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}</style>
+      <!-- export.css -->
+      <style>
+        body{margin:0 auto;max-width:800px;line-height:1.4}
+        #nav{margin:5px 0 10px;font-size:15px}
+        #titlearea{border-bottom:1px solid #ccc;font-size:17px;padding:10px 0;}
+        #contentarea{font-size:15px;margin:16px 0}
+        .cell{outline:0;min-height:20px;margin:5px 0;padding:5px 0;}
+        .code-cell{font-family:Menlo,Consolas,'Ubuntu Mono',Monaco,'source-code-pro',monospace;font-size:12px;}
+        .latex-cell{white-space:pre-wrap;}
+      </style>
+      <!-- User CSS -->
+      <style> .text-cell {font-size: 15px;}.code-cell {font-size: 12px;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
+    </head>
+    <body>
+      <div id="nav"><div>Next: <a href='3.4 React-native-reanimated 🤩.html'>3.4 React-native-reanimated 🤩</a>, Previous: <a href='3.2 react-native-animatable 🤩.html'>3.2 react-native-animatable 🤩</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="titlearea">
+        <h2>3.3 Lottie 🥳</h2>
+      </div>
+      <div id="contentarea"><div class="cell markdown-cell"><p><img src="resources/A99333D9A6F1B9276F8BA61038590B56.gif" alt="Example1.gif" width="800" height="400"></p>
+</div><div class="cell markdown-cell"><blockquote>
+<p>Lottie is a mobile library for Web, and iOS that parses <a href="http://www.adobe.com/products/aftereffects.html">Adobe After Effects</a> animations exported as json with <a href="https://github.com/airbnb/lottie-web">Bodymovin</a> and renders them natively on mobile!<br>
+For the first time, designers can create and ship beautiful animations without an engineer painstakingly recreating it by hand. They say a picture is worth 1,000 words so here are 13,000:</p>
+</blockquote>
+</div><div class="cell code-cell"><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">export</span> <span class="ace_keyword">default</span> <span class="ace_keyword">class</span> <span class="ace_identifier">Animation2</span> <span class="ace_keyword">extends</span> <span class="ace_identifier">React</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">Component</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">componentDidMount</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">animation</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">play</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_comment">// Or set a specific startFrame and endFrame with:</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_comment">// this.animation.play(30, 120);</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">resetAnimation</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_keyword ace_operator">=&gt;</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">animation</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_dom">reset</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">animation</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">play</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">WIDTH_SCREEN</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">Dimensions</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">get</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'window'</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">width</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">render</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_paren ace_lparen">(</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>  <span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">View</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_identifier">styles</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">animationContainer</span><span class="ace_paren ace_quasi ace_end">}</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_string">    </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">LottieView</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_text ace_tag-whitespace ace_xml">  </span><span class="ace_entity ace_other ace_attribute-name ace_xml">ref</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_identifier">animation</span> <span class="ace_keyword ace_operator">=&gt;</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">animation</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">animation</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>  <span class="ace_paren ace_rparen">}</span><span class="ace_paren ace_quasi ace_end">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_text ace_tag-whitespace ace_xml">  </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">width</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">WIDTH_SCREEN</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">aspectRatio</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">1</span> <span class="ace_keyword ace_operator">/</span> <span class="ace_constant ace_numeric">1</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>  <span class="ace_paren ace_rparen">}</span><span class="ace_paren ace_quasi ace_end">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_text ace_tag-whitespace ace_xml">  </span><span class="ace_entity ace_other ace_attribute-name ace_xml">source</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_identifier">require</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'./assets/nightday.json'</span><span class="ace_paren ace_rparen">)</span><span class="ace_paren ace_quasi ace_end">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_text ace_tag-whitespace ace_xml">    </span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">/&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_string">    </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">View</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">style</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_identifier">styles</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">buttonContainer</span><span class="ace_paren ace_quasi ace_end">}</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_string">  </span><span class="ace_meta ace_tag ace_punctuation ace_tag-open ace_xml">&lt;</span><span class="ace_meta ace_tag ace_tag-name ace_xml">Button</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">title</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_string ace_attribute-value ace_xml">"Restart Animation"</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_entity ace_other ace_attribute-name ace_xml">onPress</span><span class="ace_keyword ace_operator ace_attribute-equals ace_xml">=</span><span class="ace_paren ace_quasi ace_start">{</span><span class="ace_variable ace_language">this</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">resetAnimation</span><span class="ace_paren ace_quasi ace_end">}</span><span class="ace_text ace_tag-whitespace ace_xml"> </span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">/&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_string">    </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">View</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_string">  </span><span class="ace_meta ace_tag ace_punctuation ace_end-tag-open ace_xml">&lt;/</span><span class="ace_meta ace_tag ace_tag-name ace_xml">View</span><span class="ace_meta ace_tag ace_punctuation ace_tag-close ace_xml">&gt;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">const</span> <span class="ace_identifier">styles</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">StyleSheet</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">create</span><span class="ace_paren ace_lparen">({</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">animationContainer</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">backgroundColor</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'#fff'</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">alignItems</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'center'</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">justifyContent</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'center'</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_identifier">buttonContainer</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">paddingTop</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">20</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>  <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">})</span><span class="ace_punctuation ace_operator">;</span>
+</div></div></div></div><div class="cell text-cell"><img src="resources/E0BCB2C663AD62C93075D1FE4FB49FC5.gif" alt="lottie.gif" width="286" height="358"></div><div class="cell markdown-cell"><h2>Component API</h2>
+<table>
+<thead>
+<tr>
+<th>Prop</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>source</code></strong></td>
+<td><strong>Mandatory</strong> - The source of animation. Can be referenced as a local asset by a string, or remotely with an object with a <code>uri</code> property, or it can be an actual JS object of an animation, obtained (for example) with something like <code>require('../path/to/animation.json')</code></td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>progress</code></strong></td>
+<td>A number between 0 and 1, or an <code>Animated</code> number between 0 and 1. This number represents the normalized progress of the animation. If you update this prop, the animation will correspondingly update to the frame at that progress value. This prop is not required if you are using the imperative API.</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><strong><code>speed</code></strong></td>
+<td>The speed the animation will progress. This only affects the imperative API. Sending a negative value will reverse the animation</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><strong><code>duration</code></strong></td>
+<td>The duration of the animation in ms. Takes precedence over <code>speed</code> when set. This only works when <code>source</code> is an actual JS object of an animation.</td>
+<td><code>undefined</code></td>
+</tr>
+<tr>
+<td><strong><code>loop</code></strong></td>
+<td>A boolean flag indicating whether or not the animation should loop.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><strong><code>autoPlay</code></strong></td>
+<td>A boolean flag indicating whether or not the animation should start automatically when mounted. This only affects the imperative API.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><strong><code>autoSize</code></strong></td>
+<td>A boolean flag indicating whether or not the animation should size itself automatically according to the width in the animation's JSON. This only works when <code>source</code> is an actual JS object of an animation.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><strong><code>style</code></strong></td>
+<td>Style attributes for the view, as expected in a standard <a href="http://facebook.github.io/react-native/releases/0.46/docs/layout-props.html"><code>View</code></a>, aside from border styling</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>imageAssetsFolder</code></strong></td>
+<td>Needed for <strong>Android</strong> to work properly with assets, iOS will ignore it.</td>
+<td><em>None</em></td>
+</tr>
+<tr>
+<td><strong><code>onAnimationFinish</code></strong></td>
+<td>A callback function which will be called when animation is finished. Note that this callback will be called only when <code>loop</code> is set to false.</td>
+<td><em>None</em></td>
+</tr>
+</tbody>
+</table>
+<h2>Methods (Imperative API):</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>play</code></strong></td>
+<td>Play the animation all the way through, at the speed specified as a prop. It can also play a section of the animation when called as <code>play(startFrame, endFrame)</code>.</td>
+</tr>
+<tr>
+<td><strong><code>reset</code></strong></td>
+<td>Reset the animation back to <code>0</code> progress.</td>
+</tr>
+</tbody>
+</table>
+</div><div class="cell text-cell"><b>PROPS AND CONS</b></div><div class="cell markdown-cell"><table>
+<thead>
+<tr>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Support complex animations that wouldn't be easily implemented by using any normal animation APIs</td>
+<td>Have to use AE to pre-create animations view</td>
+</tr>
+<tr>
+<td>Easy to implement, without too much coding, just plug-n-play</td>
+<td>Can't handle user's gestures; if could, has a lot of limitations</td>
+</tr>
+<tr>
+<td></td>
+<td>Most of the customizations have to be done in AE</td>
+</tr>
+</tbody>
+</table>
+</div><div class="cell text-cell"><b>My thoughts: 👍</b><div>This lottie library could be very helpful in a lot of scenarios; following are some example use cases:</div><div>- Set up the tutorial when user first start app</div><div>- Set up notification screen when use made an transaction (added an item to cart, made a payment, created an order,…)</div><div>- Set up loading indicator, instead of using spinner</div><div>- When user press a button (could be heart, thumb up, star,…)</div><div>- On login screen</div><div>- On tabs icon, instead of using static vector icon</div><div>-…</div><div>But it requires designers to pre-create some animation in AE with bodymovin</div><div>Another catch is that designers shouldn’t use any image (image from file) when they create animation because it would cause some linking problem and make the ios / android project of expo rebuild, which could be troublesome.</div></div><div class="cell markdown-cell"><h3>references</h3>
+<p><a href="https://docs.expo.io/versions/latest/sdk/lottie/">Lottie - Expo Documentation</a><br>
+<a href="https://github.com/react-native-community/lottie-react-native#basic-usage">Lottie - Basic Usages - Github</a><br>
+<a href="https://github.com/airbnb/lottie-web">Lottie on Github</a><br>
+<a href="https://lottiefiles.com/">Lottiefiles - A library full of Lottie animation</a><br>
+<a href="https://exchange.adobe.com/creativecloud.details.12557.bodymovin.html">Bodymovin extension for AE</a></p>
+</div></div>
+      <script>document.body.onkeyup = function(e) {
+if (e.keyCode === 39) window.location.href = '3.4 React-native-reanimated 🤩.html';
+if (e.keyCode === 37) window.location.href = '3.2 react-native-animatable 🤩.html';
+}</script>
+    </body>
+    </html>
+  
